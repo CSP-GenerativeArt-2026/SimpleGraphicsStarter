@@ -41,7 +41,7 @@ def map_value(value, start1, stop1, start2, stop2):
     return start2 + percentage * (stop2 - start2)
 
 
-def hls_to_rgb(h, l, s):
+def hls_to_rgb_hex(h, l, s):
     """
     Converts HLS values (0.0 to 1.0) into a hex color string (e.g., '#ff0000').
     H: Hue (Color wheel position: 0.0 is red, 0.33 is green, 0.66 is blue).
@@ -58,20 +58,6 @@ def hls_to_rgb(h, l, s):
     
     # 3. Format them as a 2-digit hexadecimal string
     return f"#{r_int:02x}{g_int:02x}{b_int:02x}"
-
-def hls_to_rgb_hex(h, l, s):
-    """Converts HLS (hue, lightness, saturation) values (range 0.0 - 1.0)
-       to rgb hex string (e.g., '#ff0000')
-    H: Hue (Color wheel position: 0.0 is red, 0.33 is green, 0.66 is blue).
-    L: Lightness (0.0 is black, 0.5 is pure color, 1.0 is white).
-    S: Saturation (0.0 is gray, 1.0 is fully vibrant).
-    """
-    # colorsys uses HLS order (Hue, Lightness, Saturation)
-    rgb = colorsys.hls_to_rgb(h, l, s) 
-    # Convert 0.0-1.0 range to 0-255
-    rgb_255 = tuple(int(x * 255) for x in rgb)
-    # Format as a Hex string for Tkinter
-    return '#{:02x}{:02x}{:02x}'.format(*rgb_255)
 
 
 def rgb_hex_to_hls(hex_str):
